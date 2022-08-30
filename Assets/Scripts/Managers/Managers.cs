@@ -7,6 +7,9 @@ public class Managers : MonoBehaviour
     private static Managers s_instnace;
     private static Managers Instance { get { Init(); return s_instnace; } }
 
+
+
+
     private static void Init() 
     {
         if (s_instnace == null) 
