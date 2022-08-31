@@ -6,6 +6,8 @@ using UnityEngine;
 /// <summary>
 /// 임시코드 PlayerStateMachine으로 바꿀꺼임 
 /// Weapon Class, Manager 를 만들어서 무기 관리 
+/// weapon 에는 전기 스킬이 들 어가 있음 type 마다 공격 콤보 모션등이 달리짐 
+/// Weapon Type 받아와서 bool 형식으로 animation 제어 
 /// Item 배열안에 weapon, health, coin, 
 /// invetory
 ///  속성은 6가지 일정 수준이상으로 올릴시 속성 스킬을 
@@ -16,8 +18,16 @@ using UnityEngine;
 /// 
 /// </summary>
 
-public class PlayerController : MonoBehaviour
+
+
+public class PlayerController : BaseController
 {
+
+
+    public override void Init()
+    {
+        Managers.
+    }
 
     #region Stat
     public float attackPower;
@@ -36,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+ 
+
 
     private Animator animator;
     private SpriteRenderer sprite;
@@ -43,40 +55,36 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+       
         sprite = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
-    {
-        Move();
-        AnimationCotroll();
-    }
 
 
-    // 왼쪽 클릭하면 왼쪽보고 오른쪽 클릭하면 오른쪽봄
-    // 그리고 왼쪽 오른쪽이 아니면 보는 방향 유지.
+    
     private void Move()
     {
+
+
         Vector2 dir = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             dir.x = -1;
             sprite.flipX = true;
         }
-        else if(Input.GetKey(KeyCode.D))
+        else if(Input.GetKey(KeyCode.RightArrow))
         {
             dir.x = 1;
             sprite.flipX = false; 
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             dir.y = 1;
         }
-        else if(Input.GetKey(KeyCode.S))
+        else if(Input.GetKey(KeyCode.DownArrow))
         {
             dir.y = -1;
         }
@@ -86,23 +94,5 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void AnimationCotroll() 
-    {
-        if (Mathf.Abs(rigidbody.velocity.magnitude) >= 0.01f)
-        {
-            animator.SetBool("move", true);
-            animator.SetBool("idle", false);
-
-        }
-        else
-        {
-            animator.SetBool("move", false);
-            animator.SetBool("idle", true);
-
-        }
-    }
-
-
-
-
+    
 }

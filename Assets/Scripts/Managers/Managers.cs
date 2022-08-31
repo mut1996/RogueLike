@@ -7,8 +7,23 @@ public class Managers : MonoBehaviour
     private static Managers s_instnace;
     private static Managers Instance { get { Init(); return s_instnace; } }
 
+    private ResourceManager _resource = new ResourceManager();
+    private InputManager _input = new InputManager();
+
+    
+    public ResourceManager Resource { get { return Instance._resource; }}
+    public InputManager Input { get { return Instance._input; } }
 
 
+    private void Start()
+    {
+        Init();
+    }
+
+    private void Update()
+    {
+        _input.OnUpdate();
+    }
 
     private static void Init() 
     {
@@ -24,9 +39,15 @@ public class Managers : MonoBehaviour
 
             DontDestroyOnLoad(go);
             s_instnace = go.GetComponent<Managers>();
+
+
+
+
         
         }
+
         
-        
+
+       
     } 
 }
