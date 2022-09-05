@@ -15,17 +15,15 @@ public class Define
 
     }
 
-    public enum KeyAction 
+    public enum MouseEvent 
     {
-        
-    }
-
-
-    public enum MouseAction 
-    {
+        Press,
         Click,
-        Press
+        PointerDown,
+        PointerUp,
     }
+
+   
 
 
 }

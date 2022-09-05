@@ -9,10 +9,12 @@ public class Managers : MonoBehaviour
 
     private ResourceManager _resource = new ResourceManager();
     private InputManager _input = new InputManager();
+   
 
     
-    public ResourceManager Resource { get { return Instance._resource; }}
-    public InputManager Input { get { return Instance._input; } }
+    public static ResourceManager Resource { get { return Instance._resource; }}
+    public static InputManager Input { get { return Instance._input; } }
+
 
 
     private void Start()
